@@ -1,43 +1,21 @@
-# Core analysis pipeline (fitting + MCMC scripts, notebook)
-numpy
-pandas
-matplotlib
-torch
-pySIMsalabim
-ax-platform          # imported as `ax`
-botorch
-gpytorch
+# Core dependency - installing this pulls in nearly everything else needed:
+# ax-platform, emcee, gitpython, jupyterlab, matplotlib, numpy, openpyxl,
+# pandas, pymoo, pyodbc, pySIMsalabim, scikit-optimize, scipy, seaborn, tk,
+# torch, torchaudio, torchvision (botorch/gpytorch come along transitively
+# via ax-platform). See requirements-frozen.txt for the exact full pinned
+# environment (pip freeze from the `optimpv` pyenv env).
+optimpv==1.4
+
+# Imported directly by the fitting/MCMC scripts, not part of optimpv's own
+# dependency tree:
 httpimport
-jupyter
 
-# Optimization / rate-equation fitting framework. The scripts import TWO
-# different things named similarly - don't confuse them:
-#   - `optimpv`        -> the public package, https://github.com/openPV-lab/optimPV
-#                          `pip install optimpv`
-#   - `optimpv_github` -> YOUR OWN local/unpublished code (not the same as,
-#                          and not available from, the public optimPV repo
-#                          above). It is vendored directly into this repo at
-#                          vendor/optimpv_github/ so the archive is
-#                          self-contained - see README.md.
-#
-# TODO (M): pin the exact `optimpv` version you used, for reproducibility:
-#   pip show optimpv   -> fill in below
-#
-# optimpv==<VERSION>
-
-# Likely pulled in transitively by optimpv's BayesInfEmcee module, but
-# listed explicitly in case they aren't:
-emcee
-corner
-
-# TODO (M): vendor/optimpv_github/ may have its own dependencies beyond what's
-# listed here (check its own imports / any requirements file it has) - add
-# them above once you've checked.
+# vendor/optimpv_github/ (your own vendored code, see README.md) may need
+# additional packages beyond the above - check with:
+#   grep -rhE "^import|^from" vendor/optimpv_github | sort -u
+# and add anything missing here.
 
 # NOT required to reproduce the analysis - only needed if you have the
 # original lab hardware and want to re-run the acquisition script
 # (src/measurement/250121-trPL_PowerDeps-MeasProcedure.py):
-#   pylablib                  (Thorlabs power meter)
-#   snAPI                     (PicoQuant TCSPC SDK, proprietary)
-#   TLPM                      (Thorlabs power meter ctypes wrapper, proprietary)
-#   ni_pulser_loop_new        (in-house NI-DAQ pulser module - not in this repo)
+#   PyDAQmx, ni_pulser_loop_new, snAPI, pylablib, TLPM

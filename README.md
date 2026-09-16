@@ -1,5 +1,8 @@
 # FACs-TrapSignatures
 
+[![DOI (code)](https://zenodo.org/badge/DOI/10.5281/zenodo.22791960.svg)](https://doi.org/10.5281/zenodo.22791960)
+[![DOI (data)](https://zenodo.org/badge/DOI/10.5281/zenodo.22791430.svg)](https://doi.org/10.5281/zenodo.22791430)
+
 Code and data for: Single Best Fits Can Be Misleading: Resolving Common1
 Trapping Signatures across FA–Cs Perovskites.
 

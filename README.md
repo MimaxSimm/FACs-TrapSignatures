@@ -55,19 +55,6 @@ FACs-TrapSignatures/
    `emcee`-based MCMC sampling, writing corner plots, trace plots and
    sample CSVs to `results/MCMCResults/...`.
 
-Both `run_all_opti_12Traps_BDF_CsSeries.py` and
-`run_mcmc_from_turbo_CsContent.py` were patched during the restructuring so:
-
-- their input/output paths are computed relative to the repo root
-  (`_DATA_DIR = <repo>/data/raw`, `_RESULTS_DIR = <repo>/results`) instead of
-  the original hardcoded `/home/qrb/Documents/Scripts/20260115_MostafaEPFL/...`
-  paths, and
-- `vendor/` is put on `sys.path` so `from optimpv_github import *` resolves
-  to the vendored copy in this repo instead of the old
-  `/home/qrb/Documents/Scripts/OptimPV-Github/optimPV/` location on the
-  original machine.
-
-If you edit or re-run these scripts, that's the pattern to keep following.
 
 ### About `optimpv` vs `optimpv_github`
 
@@ -75,17 +62,9 @@ The code imports two different things with confusingly similar names:
 
 - **`optimpv`** is the public [openPV-lab/optimPV](https://github.com/openPV-lab/optimPV)
   package, installed normally via `pip install optimpv` (see `requirements.txt`).
-- **`optimpv_github`** is *not* a copy of that public package - it's your
-  own local, unpublished rate-equation fitting code
-  (`RateEqAgent`, `RateEqModel`, `Pumps`, `axBOtorchOptimizer`, etc.) that
-  doesn't exist anywhere else on GitHub. Because of that, it's vendored
-  directly into this repo at `vendor/optimpv_github/` rather than being
-  listed as an external dependency - otherwise nobody else could ever
-  install it, and the archive wouldn't actually be reproducible.
-
-If `vendor/optimpv_github/` has its own third-party dependencies beyond
-what's already in `requirements.txt`, add them there too (see the TODO at
-the bottom of `requirements.txt`).
+- **`optimpv_github`** local, unpublished rate-equation fitting code
+  (`RateEqAgent`, `RateEqModel`, `Pumps`, `axBOtorchOptimizer`, etc.) that also contains
+  the appropriate functions for the log likelihood formulation based on NRMSE.
 
 ## Getting the archived results
 
@@ -95,9 +74,6 @@ python scripts/download_results.py --record-id <ZENODO_RECORD_ID>
 
 This fetches `FitResults.zip` and `MCMCResults.zip` from the Zenodo record
 and unpacks them into `results/FitResults/` and `results/MCMCResults/`.
-Alternatively, regenerate them from scratch by running the fitting and MCMC
-scripts yourself (see Pipeline above) - the code is what actually produces
-those folders, the Zenodo archive is just the exact run used in the paper.
 
 ## Setup
 

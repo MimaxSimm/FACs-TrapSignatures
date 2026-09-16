@@ -1,0 +1,9 @@
+15.01.26
+
+We measure the samples of Mostafa Othmann from EPFL. He had nice correlations of his FAPI samples to nanostructures.
+
+Setup: BP 700-10 excitation and LP 715 detection. we observe a redish Color where there is no epoxy for the samples. Therefore, we measure just where the glue is.
+
+1) Target 1. These Lifetimes are much longer than the ones for the CsFAPI of Yanyan. Which is why we put 4ns in bin size.
+2) Ref 1. There the Lifetimes are much lower than for the previous ones. There, we go back to 10kHz and 2ns binsize.
+Start at around 9:30, finish at 13:30.

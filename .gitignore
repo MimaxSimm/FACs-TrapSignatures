@@ -1,0 +1,17 @@
+# Large results are fetched from Zenodo, not stored in git
+results/FitResults/*
+results/MCMCResults/*
+!results/FitResults/.gitkeep
+!results/MCMCResults/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.egg-info/
+.venv/
+venv/
+
+# OS junk
+.DS_Store
+Thumbs.db

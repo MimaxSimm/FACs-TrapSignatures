@@ -10,10 +10,18 @@ optimpv==1.4
 # dependency tree:
 httpimport
 
-# vendor/optimpv_github/ (your own vendored code, see README.md) may need
-# additional packages beyond the above - check with:
-#   grep -rhE "^import|^from" vendor/optimpv_github | sort -u
-# and add anything missing here.
+# Imported directly inside vendor/optimpv_github/ (confirmed via
+# `grep -rhE "^import|^from" vendor/optimpv_github | sort -u`), also not
+# part of optimpv's declared dependency tree:
+corner
+joblib
+scikit-learn      # provides `sklearn` - NOT the same package as scikit-optimize above
+
+# Note: vendor/optimpv_github/ also imports from the `optimpv` package
+# itself (e.g. `from optimpv.general.BaseAgent import BaseAgent`), not only
+# from itself - it is NOT fully self-contained, it relies on optimpv==1.4
+# above for anything it doesn't override. Run the fitting/MCMC scripts
+# end-to-end to confirm those cross-imports resolve cleanly.
 
 # NOT required to reproduce the analysis - only needed if you have the
 # original lab hardware and want to re-run the acquisition script

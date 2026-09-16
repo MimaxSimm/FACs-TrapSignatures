@@ -19,7 +19,7 @@ import zipfile
 from pathlib import Path
 
 # EDIT ME after publishing to Zenodo:
-ZENODO_RECORD_ID = None  # e.g. 1234567
+ZENODO_RECORD_ID = "22791430"  # e.g. 1234567
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 RESULTS_DIR = REPO_ROOT / "results"

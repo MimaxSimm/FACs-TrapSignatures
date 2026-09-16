@@ -1,10 +1,11 @@
 # FACs-TrapSignatures
 
-Code and data for [PAPER TITLE / CITATION - fill in once available].
+Code and data for: Single Best Fits Can Be Misleading: Resolving Common1
+Trapping Signatures across FA–Cs Perovskites.
 
 This repo holds the analysis code and raw measurement data. The larger
 intermediate/fit outputs (`FitResults/`, `MCMCResults/`) are archived
-separately on Zenodo (DOI: **TODO - fill in after upload**) because of
+separately on Zenodo (DOI: https://doi.org/10.5281/zenodo.22791430) because of
 their size, and are fetched on demand with `scripts/download_results.py`.
 
 ## Repository structure
@@ -50,8 +51,6 @@ FACs-TrapSignatures/
    fits from `results/FitResults/CsSeries/Run5_12345Traps_L500nm/` and runs
    `emcee`-based MCMC sampling, writing corner plots, trace plots and
    sample CSVs to `results/MCMCResults/...`.
-4. **Figures** (`notebooks/plots.ipynb`) - builds the paper figures from
-   the above.
 
 Both `run_all_opti_12Traps_BDF_CsSeries.py` and
 `run_mcmc_from_turbo_CsContent.py` were patched during the restructuring so:
@@ -109,38 +108,6 @@ pip install -r requirements.txt
 vs `optimpv_github`" above). See `requirements.txt` for filling in the
 exact pinned `optimpv` (PyPI) version you used, for reproducibility.
 
-## Notes on what's excluded
-
-- **`run_all_opti_2_3_4Traps_BDF.py`** (from the original folder) was left
-  out entirely - it reads and writes a completely different, unrelated
-  folder (`/home/qrb/Documents/Scripts/Fitting_Review/...`) that has
-  nothing to do with this dataset.
-- **`MCMCResults/OLD/`** was left out of the Zenodo archive - it's an
-  explicitly superseded run (labelled "did not use best nrmses" in the
-  original folder). Only `FitResults/`, `MCMCResults/UsesBestNRMSEs/` and
-  `MCMCResults/UsesBestNRMSEs_Run2/` were archived.
-- **`src/measurement/250121-trPL_PowerDeps-MeasProcedure.py`** is included
-  for provenance (it documents exactly how the raw `.dat` files were
-  recorded) but is not meant to be run by readers: it drives lab hardware
-  (a ThorLabs power meter, a PicoQuant TCSPC unit via `snAPI`, an NI-DAQ
-  pulser) through proprietary SDKs and an in-house module
-  (`ni_pulser_loop_new`) that aren't included here, and it still has a
-  hardcoded Windows path (`D:\...`) pointing at the acquisition PC's local
-  disk - unrelated to this repo's Linux layout, left as-is.
-- **`plots.ipynb`** wasn't scanned for hardcoded paths as part of this
-  restructuring. If it breaks, add near the top:
-  ```python
-  from pathlib import Path
-  REPO_ROOT = Path.cwd().resolve()
-  while not (REPO_ROOT / "data").exists() and REPO_ROOT != REPO_ROOT.parent:
-      REPO_ROOT = REPO_ROOT.parent
-  DATA_DIR = REPO_ROOT / "data" / "raw"
-  RESULTS_DIR = REPO_ROOT / "results"
-  ```
-  and swap any hardcoded `.../20260115_MostafaEPFL/...` paths for
-  `DATA_DIR / ...` or `RESULTS_DIR / ...`, then run the notebook from the
-  repo root.
-
 ## Citation
 
 TODO - add paper citation once published, and the Zenodo DOI (Zenodo
@@ -151,4 +118,4 @@ https://zenodo.org/account/settings/github/).
 ## License
 
 Code: MIT (see `LICENSE`). Data archived on Zenodo: CC-BY-4.0 (set this in
-the Zenodo upload form). Adjust both to match your journal's requirements.
+the Zenodo upload form).
